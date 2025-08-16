@@ -93,10 +93,24 @@ class ScheduleBtn extends StatelessWidget {
       child: const Text('Schedule notifications'),
       onPressed: () {
         debugPrint('Notification Scheduled for $scheduleTime');
+        final now = DateTime.now();
+        // Schedule multiple notifications with proper unique IDs
         NotificationService().scheduleNotification(
-          title: 'Scheduled Notification',
-          body: '$scheduleTime',
-          scheduledNotificationDateTime: scheduleTime,
+          title: 'First Notification',
+          body: 'Scheduled at ${now.add(Duration(minutes: 1))}',
+          scheduledNotificationDateTime: now.add(Duration(minutes: 1)),
+        );
+
+        NotificationService().scheduleNotification(
+          title: 'Second Notification',
+          body: 'Scheduled at ${now.add(Duration(minutes: 2))}',
+          scheduledNotificationDateTime: now.add(Duration(minutes: 2)),
+        );
+
+        NotificationService().scheduleNotification(
+          title: 'Third Notification',
+          body: 'Scheduled at ${now.add(Duration(minutes: 3))}',
+          scheduledNotificationDateTime: now.add(Duration(minutes: 3)),
         );
       },
     );

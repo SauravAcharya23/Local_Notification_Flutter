@@ -39,14 +39,14 @@ class NotificationService {
   }
 
   Future scheduleNotification(
-      {int id = 0,
+      {int? id,
       String? title,
       String? body,
       String? payLoad,
       required DateTime scheduledNotificationDateTime}) async {
     return notificationsPlugin.zonedSchedule(
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        id,
+        (id ?? scheduledNotificationDateTime.millisecondsSinceEpoch) % 2147483647,
         title,
         body,
         tz.TZDateTime.from(
